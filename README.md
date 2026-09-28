@@ -1,8 +1,8 @@
-# IDA MCP — Unofficial IDA 9.3 Port
+# IDA MCP for IDA 9.3
 
 An unofficial IDA 9.3 compatibility port of [HexRaysSA/ida-mcp](https://github.com/HexRaysSA/ida-mcp),
 based on [d9e415d](https://github.com/HexRaysSA/ida-mcp/tree/d9e415dc88654cbb392802e5c55b3236c090155d).
-This is not an official Hex-Rays release. Original copyright and MIT license are retained.
+Original copyright and MIT license are retained.
 Compatibility changes are supplied as a patch to [ida-nexus](https://github.com/HexRaysSA/ida-nexus) 0.13.0.
 
 ## Install the IDA 9.3 port
