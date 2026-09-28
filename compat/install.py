@@ -134,6 +134,7 @@ def main():
     if os.name != "nt":
         (state / "tmp").mkdir(exist_ok=True)
         settings["TMPDIR"] = str(state / "tmp")
+    console = python.parent / ("ida-mcp.exe" if os.name == "nt" else "ida-mcp")
     launcher = state / "run.py"
     launcher.write_text(
         "import os, subprocess, sys\n"
@@ -141,7 +142,7 @@ def main():
         'os.environ.pop("PYTHONPATH", None)\n'
         'os.environ.pop("PYTHONHOME", None)\n'
         "args = sys.argv[1:]\n"
-        f'command = [{str(gui)!r}] + args[1:] if args[:1] == ["--gui"] else [sys.executable, "-c", "from ida_mcp.cli import main; raise SystemExit(main())"] + (args or ["stdio", "--agent=ida93"])\n'
+        f'command = [{str(gui)!r}] + args[1:] if args[:1] == ["--gui"] else [{str(console)!r}] + (args or ["stdio", "--agent=ida93"])\n'
         "raise SystemExit(subprocess.call(command))\n",
         encoding="utf-8",
     )
