@@ -1,13 +1,13 @@
 {
   "name": "ida-mcp",
-  "version": "20260924.0.3",
+  "version": "20261008.0.1",
   "description": "Official Hex-Rays IDA MCP Server.",
   "mcpServers": {
     "ida": {
       "command": "uv",
       "args": [
         "run",
-        "--exclude-newer=1s",
+        "--no-dev",
         "--project",
         "${CLAUDE_PLUGIN_ROOT}",
         "ida-mcp",
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "uv run --exclude-newer=1s --project ${CLAUDE_PLUGIN_ROOT} ida-mcp hook claude"
+            "command": "uv run --no-dev --project ${CLAUDE_PLUGIN_ROOT} ida-mcp hook claude"
           }
         ]
       }

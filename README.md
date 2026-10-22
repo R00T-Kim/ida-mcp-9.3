@@ -1,9 +1,9 @@
 # IDA MCP for IDA 9.3
 
 An unofficial IDA 9.3 compatibility port of [HexRaysSA/ida-mcp](https://github.com/HexRaysSA/ida-mcp),
-based on [d9e415d](https://github.com/HexRaysSA/ida-mcp/tree/d9e415dc88654cbb392802e5c55b3236c090155d).
+based on [df6de79](https://github.com/HexRaysSA/ida-mcp/tree/df6de7985b534a964c125d5a86e41b26b17b14f6) (release 20261008.0.1).
 Original copyright and MIT license are retained.
-Compatibility changes are supplied as a patch to [ida-nexus](https://github.com/HexRaysSA/ida-nexus) 0.13.0.
+Compatibility changes are supplied as a patch to [ida-nexus](https://github.com/HexRaysSA/ida-nexus) 0.13.4.
 
 ## Install the IDA 9.3 port
 
@@ -27,8 +27,11 @@ For GUI use, run `.ida93/venv/bin/python .ida93/run.py --gui /path/to/database-c
 (on Windows use `.ida93\venv\Scripts\python.exe`). This launches IDA with the
 matching plugin and isolated settings. Start with database copies.
 
-Linux and Windows IDA 9.3 integration tests passed. Long native operations can
-respond late to cancellation or timeouts; IDA 9.4+ runtime comparison is unverified.
+On Linux, the 0.13.4-based port passed IDA 9.3 integration tests; Windows was
+last verified with the 0.13.0-based port. Long native operations can respond late
+to cancellation or timeouts; IDA 9.4+ runtime comparison is unverified.
+Three upstream autoanalysis interruption tests assume functions exist 0.25 s
+into analysis; IDA 9.3 creates its first function after 1–4 s here, so they can fail.
 The isolated installer and its MCP/GUI launchers were also tested on both platforms.
 Close this build’s MCP and IDA processes before rerunning the installer to update.
 Use the generated launcher, not `uvx ida-mcp`,

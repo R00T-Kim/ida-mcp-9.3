@@ -48,8 +48,8 @@ def main():
         for p in tomllib.loads((root / "uv.lock").read_text())["package"]
         if p["name"] == "ida-nexus"
     )
-    if package["version"] != "0.13.0":
-        raise RuntimeError("This patch requires ida-nexus 0.13.0 in uv.lock")
+    if package["version"] != "0.13.4":
+        raise RuntimeError("This patch requires ida-nexus 0.13.4 in uv.lock")
     with tempfile.TemporaryDirectory(prefix="ida93-source-") as temporary:
         archive = Path(temporary) / "nexus.tar.gz"
         with urllib.request.urlopen(package["sdist"]["url"], timeout=60) as response:
@@ -59,14 +59,14 @@ def main():
             raise RuntimeError("Nexus source checksum does not match uv.lock")
         with tarfile.open(archive) as tar:
             tar.extractall(temporary, filter="data")
-        source = Path(temporary) / "ida_nexus-0.13.0"
+        source = Path(temporary) / "ida_nexus-0.13.4"
         subprocess.run(
-            ["git", "apply", "--check", str(root / "compat/ida-nexus-0.13.0.patch")],
+            ["git", "apply", "--check", str(root / "compat/ida-nexus-0.13.4.patch")],
             cwd=source,
             check=True,
         )
         subprocess.run(
-            ["git", "apply", str(root / "compat/ida-nexus-0.13.0.patch")],
+            ["git", "apply", str(root / "compat/ida-nexus-0.13.4.patch")],
             cwd=source,
             check=True,
         )
